@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>COVID-19</title>
+    <link rel="icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- themify CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="css/flaticon.css">
+    <!-- magnific popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="css/slick.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        window.onload = function () {
+        
+        var chart = new CanvasJS.Chart("chartContainer", {
+          animationEnabled: true,
+          theme: "light2",
+          title:{
+            text: "Rastet në Kosovë"
+          },
+          axisX:{
+            valueFormatString: "DD MMM",
+            crosshair: {
+              enabled: true,
+              snapToDataPoint: true
+            }
+          },
+          axisY: {
+            title: "Pacientë",
+            crosshair: {
+              enabled: true
+            }
+          },
+          toolTip:{
+            shared:true
+          },  
+          legend:{
+            cursor:"pointer",
+            verticalAlign: "bottom",
+            horizontalAlign: "left",
+            dockInsidePlotArea: true,
+            itemclick: toogleDataSeries
+          },
+          data: [{
+            type: "line",
+            showInLegend: true,
+            name: "Të infektuar",
+            markerType: "square",
+            xValueFormatString: "DD MMM, YYYY",
+            color: "blue",
+           dataPoints: [
+              { x: new Date(2020, 1, 14), y: 1 },
+              { x: new Date(2020, 1, 15), y: 5 },
+              { x: new Date(2020, 1, 16), y: 10 },
+              { x: new Date(2020, 1, 17), y: 20 },
+              { x: new Date(2020, 1, 25), y: 30 },
+              { x: new Date(2020, 2, 8), y: 40 },
+              { x: new Date(2020, 2, 9), y: 50 },
+              { x: new Date(2020, 2, 10), y: 108 },
+              { x: new Date(2020, 2, 20), y: 110 },
+              { x: new Date(2020, 2, 24), y: 120 },
+              { x: new Date(2020, 2, 28), y: 124 },
+              { x: new Date(2020, 3, 2), y: 129 },
+              { x: new Date(2020, 3, 4), y: 130 },
+              { x: new Date(2020, 3, 9), y: 224 }
+            ]
+          },
+          {
+            type: "line",
+            showInLegend: true,
+            name: "Të vdekur",
+            lineDashType: "dash",
+            color: "red",
+            dataPoints:[
+              { x: new Date(2020, 1, 14), y: 0 },
+              { x: new Date(2020, 1, 15), y: 0 },
+              { x: new Date(2020, 1, 16), y: 0 },
+              { x: new Date(2020, 1, 17), y: 0 },
+              { x: new Date(2020, 1, 18), y: 0 },
+              { x: new Date(2020, 2, 19), y: 0 },
+              { x: new Date(2020, 2, 20), y: 0 },
+              { x: new Date(2020, 2, 21), y: 1 },
+              { x: new Date(2020, 2, 22), y: 2 },
+              { x: new Date(2020, 2, 25), y: 3 },
+              { x: new Date(2020, 2, 30), y: 3 },
+              { x: new Date(2020, 3, 1), y: 4 },
+              { x: new Date(2020, 3,2), y: 5},
+              { x: new Date(2020, 3, 9), y: 6 }
+              ]
+          },
+          {
+            type: "line",
+            showInLegend: true,
+            name: "Të shëruar",
+            lineDashType: "dash",
+            color: "green",
+            dataPoints:[
+              { x: new Date(2020, 1, 14), y: 0 },
+              { x: new Date(2020, 1, 15), y: 0 },
+              { x: new Date(2020, 1, 16), y: 0 },
+              { x: new Date(2020, 1, 17), y: 0 },
+              { x: new Date(2020, 1, 18), y: 0 },
+              { x: new Date(2020, 2, 19), y: 0 },
+              { x: new Date(2020, 2, 20), y: 0 },
+              { x: new Date(2020, 2, 21), y: 4 },
+              { x: new Date(2020, 2, 22), y: 5 },
+              { x: new Date(2020, 2, 25), y: 10 },
+              { x: new Date(2020, 2, 30), y: 14 },
+              { x: new Date(2020, 3, 1), y: 15 },
+              { x: new Date(2020, 3,2), y: 20},
+              { x: new Date(2020, 3, 9), y: 34 }
+            ]
+          }]
+        },
+        );
+        var chart1 = new CanvasJS.Chart("chartContainer1", {
+            title: {
+        text: " Vendet më të prekura "
+    },
+    axisX: {
+        valueFormatString: "MMM YYYY"
+    },
+    axisY2: {
+        title: " Vendet më të prekura ",
+        prefix: "",
+        suffix: "përsona"
+    },
+    toolTip: {
+        shared: true
+    },
+    legend: {
+        cursor: "pointer",
+        verticalAlign: "top",
+        horizontalAlign: "center",
+        dockInsidePlotArea: true,
+        itemclick: toogleDataSeries
+    },
+    data: [{
+        type:"line",
+        axisYType: "secondary",
+        name: "Prishtinë",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "##,përsona",
+        dataPoints: [       
+        { x: new Date(2020, 03, 01), y: 00 },
+            { x: new Date(2020, 03, 02), y: 00 },
+            { x: new Date(2020, 03, 03), y: 02 },
+            { x: new Date(2020, 03, 04), y: 03 },
+            { x: new Date(2020, 03, 05), y: 03 },
+            { x: new Date(2020, 03, 06), y: 05 },
+            { x: new Date(2020, 03, 07), y: 06 },
+            { x: new Date(2020, 03, 08), y: 09 },
+            { x: new Date(2020, 03, 09), y: 09 },
+            { x: new Date(2020, 03, 10), y: 09 },
+            { x: new Date(2020, 03, 11), y: 10 },
+            { x: new Date(2020, 03, 12), y: 12 },
+            { x: new Date(2020, 03, 13), y: 13 },
+            { x: new Date(2020, 03, 14), y: 15 },
+            { x: new Date(2020, 03, 15), y: 15 },
+            { x: new Date(2020, 03, 16), y: 16 },
+            { x: new Date(2020, 03, 17), y: 17 },
+            { x: new Date(2020, 03, 18), y: 18 },
+            { x: new Date(2020, 03, 19), y: 20 },
+            { x: new Date(2020, 03, 20), y: 20 },
+            { x: new Date(2020, 03, 21), y: 20 },
+            { x: new Date(2020, 03, 22), y: 21 },
+            { x: new Date(2020, 03, 23), y: 21 },
+            { x: new Date(2020, 03, 24), y: 22 },
+            { x: new Date(2020, 03, 25), y: 22 },
+            { x: new Date(2020, 03, 26), y: 22 },
+            { x: new Date(2020, 03, 27), y: 23 },
+            { x: new Date(2020, 03, 28), y: 23 },
+            { x: new Date(2020, 03, 29), y: 23 },
+            { x: new Date(2020, 03, 30), y: 24},
+            { x: new Date(2020, 03, 31), y: 25 }
+        ]
+    },
+    {
+        type: "line",
+        axisYType: "secondary",
+        name: "Malishevë",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "#,përsona",
+        dataPoints: [
+        { x: new Date(2020, 03, 01), y: 04 },
+            { x: new Date(2020, 03, 02), y: 04 },
+            { x: new Date(2020, 03, 03), y: 04 },
+            { x: new Date(2020, 03, 04), y: 07 },
+            { x: new Date(2020, 03, 05), y: 07 },
+            { x: new Date(2020, 03, 06), y: 08 },
+            { x: new Date(2020, 03, 07), y: 09 },
+            { x: new Date(2020, 03, 08), y: 09 },
+            { x: new Date(2020, 03, 09), y: 10 },
+            { x: new Date(2020, 03, 10), y: 11 },
+            { x: new Date(2020, 03, 11), y: 12 },
+            { x: new Date(2020, 03, 12), y: 12 },
+            { x: new Date(2020, 03, 13), y: 15 },
+            { x: new Date(2020, 03, 14), y: 18 },
+            { x: new Date(2020, 03, 15), y: 22 },
+            { x: new Date(2020, 03, 16), y: 24 },
+            { x: new Date(2020, 03, 17), y: 28 },
+            { x: new Date(2020, 03, 18), y: 35 },
+            { x: new Date(2020, 03, 19), y: 38 },
+            { x: new Date(2020, 03, 20), y: 43 },
+            { x: new Date(2020, 03, 21), y: 48 },
+            { x: new Date(2020, 03, 22), y: 50 },
+            { x: new Date(2020, 03, 23), y: 52 },
+            { x: new Date(2020, 03, 24), y: 54 },
+            { x: new Date(2020, 03, 25), y: 55 },
+            { x: new Date(2020, 03, 26), y: 57 },
+            { x: new Date(2020, 03, 27), y: 58 },
+            { x: new Date(2020, 03, 28), y: 60 },
+            { x: new Date(2020, 03, 29), y: 62 },
+            { x: new Date(2020, 03, 30), y: 64 },
+            { x: new Date(2020, 03, 31), y: 66 }
+        ]
+    },
+    {
+        type: "line",
+        axisYType: "secondary",
+        name: "Vushtria",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "#,persona",
+        dataPoints: [
+        { x: new Date(2020, 03, 01), y: 00 },
+            { x: new Date(2020, 03, 02), y: 00 },
+            { x: new Date(2020, 03, 03), y: 01 },
+            { x: new Date(2020, 03, 04), y: 03 },
+            { x: new Date(2020, 03, 05), y: 04 },
+            { x: new Date(2020, 03, 06), y: 05 },
+            { x: new Date(2020, 03, 07), y: 05 },
+            { x: new Date(2020, 03, 08), y: 08 },
+            { x: new Date(2020, 03, 09), y: 08 },
+            { x: new Date(2020, 03, 10), y: 09 },
+            { x: new Date(2020, 03, 11), y: 09 },
+            { x: new Date(2020, 03, 12), y: 10 },
+            { x: new Date(2020, 03, 13), y: 11 },
+            { x: new Date(2020, 03, 14), y: 11 },
+            { x: new Date(2020, 03, 15), y: 14 },
+            { x: new Date(2020, 03, 16), y: 15 },
+            { x: new Date(2020, 03, 17), y: 15 },
+            { x: new Date(2020, 03, 18), y: 16 },
+            { x: new Date(2020, 03, 19), y: 17 },
+            { x: new Date(2020, 03, 20), y: 18 },
+            { x: new Date(2020, 03, 21), y: 19 },
+            { x: new Date(2020, 03, 22), y: 20 },
+            { x: new Date(2020, 03, 23), y: 20 },
+            { x: new Date(2020, 03, 24), y: 21 },
+            { x: new Date(2020, 03, 25), y: 21 },
+            { x: new Date(2020, 03, 26), y: 21 },
+            { x: new Date(2020, 03, 27), y: 22 },
+            { x: new Date(2020, 03, 28), y: 23 },
+            { x: new Date(2020, 03, 29), y: 23 },
+            { x: new Date(2020, 03, 30), y: 24 },
+            { x: new Date(2020, 03, 31), y: 24 }
+        ]
+    },
+    {
+        type: "line",
+        axisYType: "secondary",
+        name: "Gjilan",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "#,përsona",
+        dataPoints: [
+        { x: new Date(2020, 03, 01), y: 00 },
+            { x: new Date(2020, 03, 02), y: 00 },
+            { x: new Date(2020, 03, 03), y: 01 },
+            { x: new Date(2020, 03, 04), y: 01 },
+            { x: new Date(2020, 03, 05), y: 02 },
+            { x: new Date(2020, 03, 06), y: 02 },
+            { x: new Date(2020, 03, 07), y: 02 },
+            { x: new Date(2020, 03, 08), y: 04 },
+            { x: new Date(2020, 03, 09), y: 04 },
+            { x: new Date(2020, 03, 10), y: 04 },
+            { x: new Date(2020, 03, 11), y: 04 },
+            { x: new Date(2020, 03, 12), y: 04 },
+            { x: new Date(2020, 03, 13), y: 05 },
+            { x: new Date(2020, 03, 14), y: 07 },
+            { x: new Date(2020, 03, 15), y: 08 },
+            { x: new Date(2020, 03, 16), y: 08 },
+            { x: new Date(2020, 03, 17), y: 10 },
+            { x: new Date(2020, 03, 18), y: 10 },
+            { x: new Date(2020, 03, 19), y: 10 },
+            { x: new Date(2020, 03, 20), y: 11 },
+            { x: new Date(2020, 03, 21), y: 11 },
+            { x: new Date(2020, 03, 22), y: 12 },
+            { x: new Date(2020, 03, 23), y: 12 },
+            { x: new Date(2020, 03, 24), y: 13 },
+            { x: new Date(2020, 03, 25), y: 14 },
+            { x: new Date(2020, 03, 26), y: 14 },
+            { x: new Date(2020, 03, 27), y: 15 },
+            { x: new Date(2020, 03, 28), y: 16 },
+            { x: new Date(2020, 03, 29), y: 17 },
+            { x: new Date(2020, 03, 30), y: 17 },
+            { x: new Date(2020, 03, 31), y: 18 }
+
+        ]
+    }]
+});
+
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+          animationEnabled: true,
+          theme: "light2",
+          title:{
+            text: "Covid-19"
+          },
+          axisX:{
+            valueFormatString: "DD MMM",
+            crosshair: {
+              enabled: true,
+              snapToDataPoint: true
+            }
+          },
+          axisY: {
+            title: "Pacientë",
+            crosshair: {
+              enabled: true
+            }
+          },
+          toolTip:{
+            shared:true
+          },  
+          legend:{
+            cursor:"pointer",
+            verticalAlign: "bottom",
+            horizontalAlign: "left",
+            dockInsidePlotArea: true,
+            itemclick: toogleDataSeries
+          },
+          data: [{
+            type: "line",
+            showInLegend: true,
+            name: "Raste te reja",
+            markerType: "square",
+            xValueFormatString: "DD MMM, YYYY",
+            color: "#F08080",
+           dataPoints: [
+              { x: new Date(2020, 1, 14), y: 1 },
+              { x: new Date(2020, 1, 15), y: 94 },
+              { x: new Date(2020, 1, 16), y: 756 },
+              { x: new Date(2020, 1, 17), y: 2503 },
+              { x: new Date(2020, 1, 25), y: 6239 },
+              { x: new Date(2020, 2, 8), y: 12039 },
+              { x: new Date(2020, 2, 9), y: 22039 },
+              { x: new Date(2020, 2, 10), y: 54322 },
+              { x: new Date(2020, 2, 20), y: 120984 },
+              { x: new Date(2020, 2, 24), y: 297839 },
+              { x: new Date(2020, 2, 28), y: 600283 },
+              { x: new Date(2020, 3, 2), y: 999234 },
+              { x: new Date(2020, 3, 4), y: 1305435 },
+              { x: new Date(2020, 3, 9), y: 1482234 }
+            ]
+          },
+          {
+            type: "line",
+            showInLegend: true,
+            name: "Te sheruar",
+            lineDashType: "dash",
+            dataPoints:[
+              { x: new Date(2020, 1, 14), y: 0 },
+              { x: new Date(2020, 1, 15), y: 245 },
+              { x: new Date(2020, 1, 16), y: 987 },
+              { x: new Date(2020, 1, 17), y: 1563 },
+              { x: new Date(2020, 1, 18), y: 3546 },
+              { x: new Date(2020, 2, 19), y: 6754 },
+              { x: new Date(2020, 2, 20), y: 12453 },
+              { x: new Date(2020, 2, 21), y: 23456 },
+              { x: new Date(2020, 2, 22), y: 54673 },
+              { x: new Date(2020, 2, 25), y: 88935 },
+              { x: new Date(2020, 2, 30), y: 99324 },
+              { x: new Date(2020, 3, 1), y: 123324 },
+              { x: new Date(2020, 3,2), y: 256738},
+              { x: new Date(2020, 3, 9), y: 329345 }
+            ]
+          }]
+        });
+        chart.render();
+        chart1.render();
+        chart2.render();
+        
+        function toogleDataSeries(e){
+          if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            e.dataSeries.visible = false;
+          } else{
+            e.dataSeries.visible = true;
+          }
+          chart.render();
+        }
+        
+        }
+        </script>
+        
+        
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+<body>
+    <!--::header part start::-->
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html"> <img src="Image/COVID—19.png" alt="logo"> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse main-menu-item justify-content-center"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html">Ballina</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html">Parandalimi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Doctor.html">Simptomat</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html">Kontaktet</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="btn_2 d-none d-lg-block" href="#">Numri për urgjenca - 038 200 80 800</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header part end-->
+
+    <!-- banner part start-->
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-xl-5">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+                            <h5>Jemi këtu për ju</h5>
+                            <h1> #Panike Jo
+                                #Kujdes Po</h1>
+                            <p>Ta rrisim kujdesin që të mbrojmë veten dhe të tjerët. </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="banner_img">
+                        <img src="img/banner_img.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner part start-->
+    <section>
+        <div id="chartContainer" style="height: 300px; width: 80%; padding-left: 150px;"></div>
+    </section>
+
+    <!-- about us part start-->
+    <section class="about_us padding_top">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-6 col-lg-6">
+                    <div class="about_us_img">
+                        <img src="Image/coronavirus-Information.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="about_us_text">
+                        <h2>Rreth Virusit</h2>
+                        <p>SARS-CoV-2 është virus i ri nga familja e virusit korona, fillimisht i zbuluar në 
+                            Kinë në dhjetor të vitit 2019. Virusi është shkaktar i sëmundjes
+                             respiratore akute (teshtimë, kollitje dhe të ngjashme).
+
+                            Përvojat fillestare tregojnë që personat në moshë dhe të sëmurët kronik 
+                            janë të ekspozuar në rrezik më të madh të komplikime dhe formave të rënda të sëmundjes. 
+                            Periudha e inkubacionit të virusit është më së shumti 14 ditë, 
+                            gjatë të cilës personat e infektuar nuk shfaqin simptome, 
+                            por mund ta shpërndajnë virusin tek personat e tjerë.
+                            
+                            Të gjithë udhëtarët që vijnë nga vendet me rrezik të lartë dhe të mesëm 
+                            duhet të qëndrojnë në vetë-izolim në shtëpitë e tyre dhe të paraqiten 
+                            tek organet kompetente në rast se ju shfaqen simptome.</p>
+                        <a class="btn_2 " href="#">Mëso më shumë</a>
+                        <div class="banner_item">
+                            <div class="single_item">                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about us part end-->
+
+    <!-- feature_part start-->
+    <section class="feature_part">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="section_tittle text-center">
+                        <h2>Këshilla nga Mjekët</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-3 col-sm-12">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="Image/Do.png" alt=""></span>
+                            <h4>Lani Duart</h4>
+                            <p>Lani duart rregullisht për 20 sekonda,
+                                 me sapun dhe ujë ose pastroj duart me bazë alkooli .</p>
+                        </div>
+                    </div>
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="Image/Do.png" alt=""></span>
+                            <h4>Mbulojeni Gojën</h4>
+                            <p>Mbuloni hundën dhe gojën me një pecetë të disponueshëm 
+                                ose bërryl  kur kolliteni ose teshtitni.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                        <div class="single_feature_img">
+                            <img src="img/service.png" alt="">
+                            <img src="/Image/dont.png" alt="">
+                            <p> <strong>Prekni sytë, hundën ose gojën nëse duart tuaja nuk janë të pastra.</strong></p>
+                        </div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="Image/Do.png" alt=""></span>
+                            <h4>Shmangni Kontaktet</h4>
+                            <p>Shmangni kontaktin e ngushtë (1 metër largësi) me njerëzit.</p>
+                        </div>
+                    </div>
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="Image/Do.png" alt=""></span>
+                            <h4>Rri në Shtëpi</h4>
+                            <p>Qëndroni në shtëpi dhe vet-izolohuni nga të tjerët në shtëpi nëse nuk ndiheni mirë</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feature_part start-->
+
+    <!-- our depertment part start-->
+    <section class="our_depertment section_padding">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-xl-12">
+                    <div class="depertment_content">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-8">
+                                <h2>Simptomat</h2>
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="single_our_depertment">
+                                            <span class="our_depertment_icon"><img src="Image/fever.png"
+                                                    alt=""></span>
+                                            <h4>#Do ja dalim</h4>
+                                            <p>Simptomat më të zakonshme të COVID-19 janë ethet, lodhja dhe kollë e thatë. </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="single_our_depertment">
+                                            <span class="our_depertment_icon"><img src="Image/runny-nose.png"
+                                                    alt=""></span>
+                                            <h4>#Kujdes</h4>
+                                            <p>Disa pacientë mund të kenë dhimbje dhe vuajtje, zënie të hundës, 
+                                                rrjedhje në hundë, dhimbje të fytit ose diarre. 
+                                                Këto simptoma janë zakonisht të lehta dhe fillojnë gradualisht.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="single_our_depertment">
+                                            <span class="our_depertment_icon"><img src="Image/medical-mask.png"
+                                                    alt=""></span>
+                                            <h4>#Pa panikë</h4>
+                                            <p>Disa njerëz infektohen por nuk shfaqin ndonjë simptomë dhe nuk ndjehen keq.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="single_our_depertment">
+                                            <span class="our_depertment_icon"><img src="Image/stayhome.png"
+                                                    alt=""></span>
+                                            <h4>#Rri në shtëpi</h4>
+                                            <p>Shumica e njerëzve (rreth 80%) shërohen nga sëmundja pa pasur nevojë për 
+                                                trajtim të veçantë.</p>
+                                                 
+                                        </div>                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- our depertment part end-->
+
+    <!--::doctor_part start::-->
+<section>
+    <div id="chartContainer1" style="height: 300px; width: 80%; padding-left: 150px;"></div>
+</section>
+    <!--::doctor_part end::-->
+
+    <!--::blog_part start::-->
+    <section class="blog_part section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="section_tittle text-center">
+                        <h2 style="color: white;
+                    
+                        text-shadow:
+                            0.07em 0 black,
+                            0 0.07em black,
+                            -0.07em 0 black,
+                            0 -0.07em black;">Mitet dhe Faktet</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="single-home-blog">
+                        <div class="card">
+                            <img src="Image/mb-hot-bath.png" class="card-img-top" alt="blog">
+                            <div class="card-body">
+                                <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters">
+                                    <h5 class="card-title" style=" color: white;
+                                    font-size: 20px;
+                                    text-shadow:
+                                        0.07em 0 black,
+                                        0 0.07em black,
+                                        -0.07em 0 black,
+                                        0 -0.07em black;">Bërja e një dushi të nxehtë nuk parandalon sëmundjen e re të koronavirusit</h5>
+                                </a>
+                             <p style=" color: white;
+                             font-size: 20px;
+                             text-shadow:
+                                 0.07em 0 black,
+                                 0 0.07em black,
+                                 -0.07em 0 black,
+                                 0 -0.07em black;">Bërja e një banjë të nxehtë nuk do të parandaloj të kapni COVID-19. 
+                                 Temperatura juaj normale e trupit mbetet rreth 36.5 ° C deri 37 ° C,
+                                  pavarësisht nga temperatura e banjës ose dushit tuaj. 
+                                  Në fakt, marrja e një banjë të nxehtë me ujë jashtëzakonisht të nxehtë mund të jetë e dëmshme,
+                                   pasi mund t’ju djegë. Mënyra më e mirë për të mbrojtur veten kundër COVID-19 është 
+                                   duke pastruar shpesh duart. Duke bërë këtë ju eliminoni viruset që mund 
+                                   të jenë në duart tuaja dhe shmangni infeksionin që mund të ndodhë duke prekur më pas sytë, gojën dhe hundën.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="single-home-blog">
+                        <div class="card">
+                            <img src="Image/mb-breathing-exercice.jpg" class="card-img-top" alt="blog">
+                            <div class="card-body">
+                                <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters">
+                                    <h5 class="card-title" style=" color: white;
+                                    font-size: 20px;
+                                    text-shadow:
+                                        0.07em 0 black,
+                                        0 0.07em black,
+                                        -0.07em 0 black,
+                                        0 -0.07em black;">Të jeni në gjendje të mbani frymën tuaj për 10 sekonda</h5>
+                                </a>
+                                <p style=" color: white;
+                                font-size: 20px;
+                                text-shadow:
+                                    0.07em 0 black,
+                                    0 0.07em black,
+                                    -0.07em 0 black,
+                                    0 -0.07em black;"><strong> Mitë:</strong> Të jesh në gjendje të mbash frymën tuaj për 10 sekonda ose më shumë pa kollitje ose 
+                                    duke mos ndier siklet do të thotë që ju jeni të lirë nga sëmundja koronavirus (COVID-19)
+                                     ose ndonjë sëmundje tjetër e mushkërive.</p>
+                                      <p style=" color: white;
+                                      font-size: 20px;
+                                      text-shadow:
+                                          0.07em 0 black,
+                                          0 0.07em black,
+                                          -0.07em 0 black,
+                                          0 -0.07em black;">Simptomat më të zakonshme të COVID-19 janë kolla e thatë, lodhja dhe ethet.
+                                           Disa njerëz mund të zhvillojnë forma më të rënda të sëmundjes, siç është pneumonia. 
+                                           Mënyra më e mirë për të konfirmuar nëse keni virusin që prodhon sëmundjen COVID-19 
+                                           është me një test laboratorik. Ju nuk mund ta konfirmoni atë me këtë ushtrim frymëmarrjeje, 
+                                           i cili madje mund të jetë i rrezikshëm.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="full-height">
+            <iframe  id="iframe-app" src="https://www.bing.com/covid" width="100%" height="100%"></iframe>
+            </div> 
+    </section>
+    <!--::blog_part end::-->
+
+    <!-- footer part start-->
+    <footer class="footer-area">
+        <div class="footer section_padding">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-2 col-md-4 col-sm-6 single-footer-widget">
+                        <a href="#" class="footer_logo"> <img src="Image/COVID—19.png" alt="#"> </a>
+
+                    </div>
+                    <div class="col-xl-2 col-sm-6 col-md-4 single-footer-widget">
+                        <h4 style=" color: white;
+                        font-size: 20px;
+                        text-shadow:
+                            0.07em 0 black,
+                            0 0.07em black,
+                            -0.07em 0 black,
+                            0 -0.07em black;">Numri i Urgjencës </h4>
+                        <img src="/Image/phone.png" alt="">
+                        <br>
+                        <h5 style=" color: white;
+                        font-size: 20px;
+                        text-shadow:
+                            0.07em 0 black,
+                            0 0.07em black,
+                            -0.07em 0 black,
+                            0 -0.07em black;">038 200 80 800</h5>
+        
+                    </div>
+                    <div class="col-xl-2 col-sm-6 col-md-4 single-footer-widget">
+                        <h4 style=" color: white;
+                        font-size: 20px;
+                        text-shadow:
+                            0.07em 0 black,
+                            0 0.07em black,
+                            -0.07em 0 black,
+                            0 -0.07em black;">Website</h4>
+                        <img src="/Image/www.jpg" alt="">
+                        <p> </p>
+                        <a href="http://niph-rks.org/" target="_blank">http://niph-rks.org/</a>
+                        
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-md-6 single-footer-widget">
+                        <h4 style=" color: white;
+                        font-size: 20px;
+                        text-shadow:
+                            0.07em 0 black,
+                            0 0.07em black,
+                            -0.07em 0 black,
+                            0 -0.07em black;">Email Adressa</h4>
+                        <p style=" color: white;
+                        font-size: 20px;
+                        text-shadow:
+                            0.07em 0 black,
+                            0 0.07em black,
+                            -0.07em 0 black,
+                            0 -0.07em black;">Na shkruani direkt</p>
+                        <div class="form-wrap" id="mc_embed_signup">
+                            <form target="_blank"
+                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                method="get" class="form-inline">
+                                <input class="form-control" name="EMAIL" placeholder="Your Email Address"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
+                                    required="" type="email">
+                                <button class="click-btn btn btn-default text-uppercase"> <i class="ti-angle-right"></i>
+                                </button>
+                                <div style="position: absolute; left: -5000px;">
+                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
+                                        type="text">
+                                </div>
+
+                                <div class="info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row align-items-center">
+                    <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                    <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"> <i class="ti-twitter"></i> </a>
+                        <a href="#"><i class="ti-instagram"></i></a>
+                        <a href="#"><i class="ti-skype"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- footer part end-->
+
+    <!-- jquery plugins here-->
+
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- contact js -->
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/contact.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
